@@ -1,0 +1,47 @@
+.imgcar{
+    height:80vh;
+    width:200vh;
+  }
+  .imggal{
+    height: 25vh;
+    width: 40vh;
+  }
+ .imggal
+ {
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.imggal:hover{
+    -webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+.gallery{
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    padding: 30px 0px;
+}
+.gallery::-webkit-scrollbar {
+     display: none;
+} 
+.footer {
+    
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+ }
+ .imgfooter{
+     width:3vh;
+ }
+ @media(max-width:1300px)
+ {
+    .imggal{
+        height: 20vh;
+        width: 30vh;
+      }
+ }
