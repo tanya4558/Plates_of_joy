@@ -1,0 +1,271 @@
+import { BrowserModule } from '@angular/platform-browser';
+
+import { NgModule } from '@angular/core';
+
+
+
+
+import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+
+import { HeaderComponent } from './header/header.component';
+
+import { SidebarComponent } from './sidebar/sidebar.component';
+
+import { FooterComponent } from './footer/footer.component';
+
+import { PagelayoutComponent } from './pagelayout/pagelayout.component';
+
+import { HomepageComponent } from './homepage/homepage.component';
+
+import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInfo, WindowRef, DocumentRef, MapServiceFactory,
+
+    BingMapAPILoaderConfig, BingMapAPILoader,
+
+    GoogleMapAPILoader,  GoogleMapAPILoaderConfig
+
+} from 'angular-maps';
+
+import {
+
+    DxDataGridModule,
+
+    DxTemplateModule,
+
+    DxFileUploaderModule,
+
+    DxSelectBoxModule,
+
+    DxDateBoxModule,
+
+    DxTextBoxModule,
+
+    DxTextAreaModule, DxValidatorModule, DxValidationSummaryModule, DxButtonModule, DxNumberBoxModule,
+
+    DxChartModule, DxPieChartModule, DxSliderModule, DxListModule, DxDropDownBoxModule, DxTreeViewModule, DxHtmlEditorModule, DxToolbarModule,
+
+    DxLoadIndicatorModule, DxValidationGroupModule, DxPopupModule, DxTooltipModule, DxCheckBoxModule, DxTabsModule, DxCalendarModule, DxSchedulerModule, DxLoadPanelModule, DxAutocompleteModule,
+
+    DxPopoverModule, DxSwitchModule, DxScrollViewModule, DxTileViewModule, DxRadioGroupModule, DxProgressBarModule
+
+} from 'devextreme-angular';
+
+
+
+
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { ToastrModule } from 'ngx-toastr';
+
+import { DxiColumnModule, DxiSeriesModule, DxoCommonSeriesSettingsComponent, DxoLegendModule, DxoTooltipModule } from 'devextreme-angular/ui/nested';
+
+
+
+
+import { JwtInterceptor } from './jwt-interceptor';
+
+import { JobdetailComponent } from './jobdetail/jobdetail.component';
+
+import { LoginComponent } from './authentication-pages/login/login.component';
+
+import { SystemLoginComponent } from './authentication-pages/system-login/system-login.component';
+
+import { BingMapsComponent } from './jobdetail/bing-maps/bing-maps.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { AngularMapsComponent } from './jobdetail/angular-maps/angular-maps.component';
+
+import { AgmCoreModule } from '@agm/core';
+
+import { SharedService } from './services/shared.service';
+
+import { NgxUiLoaderConfig, NgxUiLoaderModule, PB_DIRECTION, POSITION, SPINNER } from 'ngx-ui-loader';
+
+import { CommonModule } from '@angular/common';
+
+
+
+
+export function MapServiceProviderFactory(){
+
+    let bc: BingMapAPILoaderConfig = new BingMapAPILoaderConfig();
+
+    bc.apiKey =" LY8Puw7ulnvg0W6WrpvZ~pRakAnSMpA648sKKLy7thw~AuCOH3A1jWFd4cWm6cFmk33P-L_hWdI6coet70oGFvc3FNnOeOfTvp14pnJRrsHv"; // your bing map key
+
+    bc.branch = "experimental";
+
+        // to use the experimental bing brach. There are some bug fixes for
+
+        // clustering in that branch you will need if you want to use
+
+        // clustering.
+
+    return new BingMapAPILoader(bc, new WindowRef(), new DocumentRef());
+
+}
+
+
+
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+
+    bgsColor: 'red',
+
+    bgsPosition: POSITION.bottomCenter,
+
+    bgsSize: 40,
+
+    bgsType: SPINNER.rectangleBounce, // background spinner type
+
+    fgsType: SPINNER.ballSpinClockwise, // foreground spinner type
+
+    pbDirection: PB_DIRECTION.leftToRight, // progress bar direction
+
+    pbThickness: 0, // progress bar thickness
+
+  };
+
+
+
+
+@NgModule({
+
+    declarations: [
+
+        AppComponent,
+
+        HeaderComponent,
+
+        SidebarComponent,
+
+        FooterComponent,
+
+        PagelayoutComponent,
+
+        HomepageComponent,
+
+        JobdetailComponent,
+
+        LoginComponent,
+
+        SystemLoginComponent,
+
+        BingMapsComponent,
+
+        AngularMapsComponent
+
+
+
+
+    ],
+
+    imports: [
+
+        BrowserModule,CommonModule,
+
+        AppRoutingModule,
+
+        BrowserModule,
+
+        BrowserAnimationsModule,
+
+        AppRoutingModule,
+
+        DxSelectBoxModule,
+
+        DxDataGridModule,
+
+        DxTemplateModule,
+
+        DxDateBoxModule,
+
+        DxFileUploaderModule,
+
+        DxTextBoxModule,
+
+        DxTextAreaModule,
+
+        DxValidatorModule, DxValidationSummaryModule, DxButtonModule, DxNumberBoxModule, DxListModule, DxDropDownBoxModule,
+
+        DxChartModule, DxListModule, DxDropDownBoxModule, DxTreeViewModule, DxHtmlEditorModule, DxToolbarModule, DxLoadIndicatorModule, DxTooltipModule,
+
+        DxPieChartModule, DxCheckBoxModule, DxTabsModule, DxCalendarModule, DxSchedulerModule,
+
+        DxSliderModule,
+
+        DxAutocompleteModule,
+
+        DxPopoverModule,
+
+        DxSwitchModule,
+
+        DxLoadPanelModule,
+
+        DxPopupModule,
+
+        DxScrollViewModule,
+
+        DxTileViewModule,
+
+        DxRadioGroupModule,
+
+        DxLoadIndicatorModule,
+
+        DxProgressBarModule,
+
+        HttpClientModule,
+
+        FormsModule,
+
+        ReactiveFormsModule,  
+
+        DxoLegendModule,
+
+        DxDataGridModule,
+
+        DxiSeriesModule,
+
+        DxSelectBoxModule,
+
+        DxButtonModule,
+
+        DxPieChartModule,
+
+        DxoTooltipModule,
+
+        ToastrModule.forRoot(),
+
+        MapModule.forRoot(),
+
+        NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+
+        AgmCoreModule.forRoot({
+
+          //  apiKey: 'AIzaSyCbaB2O8y-CEoX-1c7sXBqahGoU_Fz5mdI',
+
+          apiKey: 'AIzaSyBkaNPmfiIiWdeIwH_X-xT1RUaVUu_wxJI',
+
+            libraries: ['places', 'drawing']
+
+          })
+
+    ],
+
+    providers: [ { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+
+        {provide: MapAPILoader, deps: [], useFactory: MapServiceProviderFactory},
+
+        HttpClientModule, SharedService],
+
+    bootstrap: [AppComponent]
+
+})
+
+export class AppModule { }
+
+
